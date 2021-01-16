@@ -8,3 +8,5 @@
 *.ear
 
 /out/
+*.mv.db
+/target/
