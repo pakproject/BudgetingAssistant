@@ -4,9 +4,8 @@ import com.budgeting.demo.model.Register;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.util.List;
 
 @Repository
 public class RegisterRepository {
@@ -14,16 +13,31 @@ public class RegisterRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void save (Register register) {
+    public void save(Register register) {
         entityManager.persist(register);
     }
 
     @Transactional
+    public Register read(String name) throws NoResultException {
+        TypedQuery<Register> query = this.entityManager.createQuery("SELECT r FROM Register r WHERE r.name = ?1", Register.class);
+        query.setParameter(1, name);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Transactional
     public void checkAll() {
-        Query q = this.entityManager.createQuery("select r from Register r");
-        q.getResultList().forEach(r -> {
-            System.out.println(((Register)r).getName());
+        getAll().forEach(r -> {
+            System.out.println(r.getName());
         });
+    }
+
+    @Transactional
+    public List<Register> getAll() {
+        return this.entityManager.createQuery("select r from Register r", Register.class).getResultList();
     }
 
 }

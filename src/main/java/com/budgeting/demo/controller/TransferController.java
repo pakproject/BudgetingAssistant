@@ -18,8 +18,14 @@ public class TransferController {
     @PostMapping("/checkController")
     public ResponseEntity checkController(@RequestBody String message) {
         //System.out.println(message);
-        repository.save(new Register(message));
+        repository.save(new Register(message, 0.1));
         repository.checkAll();
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/recharge")
+    public ResponseEntity recharge (@RequestBody String body) {
+
         return ResponseEntity.ok().build();
     }
 

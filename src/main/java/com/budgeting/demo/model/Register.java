@@ -1,9 +1,9 @@
 package com.budgeting.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Currency;
 
 @Entity
 public class Register {
@@ -11,13 +11,17 @@ public class Register {
     @GeneratedValue
     private Long id;
 
-    String name;
+    @Column(length = 4096)
+    private String name;
+
+    private Double amount;
 
     public Register() {
     }
 
-    public Register(String name) {
+    public Register(String name, Double amount) {
         this.name = name;
+        this.amount = amount;
     }
 
     public String getName() {
@@ -26,5 +30,13 @@ public class Register {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }
