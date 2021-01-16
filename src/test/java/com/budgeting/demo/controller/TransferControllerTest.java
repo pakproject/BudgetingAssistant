@@ -30,6 +30,7 @@ public class TransferControllerTest {
     public static final double AMOUNT_1000 = 1000.0;
     public static final String TRANSFER = "/transfer";
     public static final String RECHARGE = "/recharge";
+    public static final String CHECK_ALL = "/checkAll";
     @Autowired
     private MockMvc mvc;
 
@@ -112,4 +113,9 @@ public class TransferControllerTest {
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
+    @Test
+    public void givenCheckAll_checkAllInvoked() throws Exception {
+        mvc.perform(post(CHECK_ALL)).andExpect(status().is(HttpStatus.OK.value()));
+        verify(repository).getAll();
+    }
 }

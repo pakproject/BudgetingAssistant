@@ -24,7 +24,7 @@ public class TransferController {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    @PostMapping("/getAll")
+    @PostMapping("/checkAll")
     public ResponseEntity getAll() {
         List<Register> allRegisers = repository.getAll();
         allRegisers.forEach(r -> {
