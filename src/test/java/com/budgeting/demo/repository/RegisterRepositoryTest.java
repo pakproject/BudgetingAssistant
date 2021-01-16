@@ -26,7 +26,7 @@ public class RegisterRepositoryTest {
 
     @Test
     public void givenValueInserted_valueAvailable() {
-        registerRepository.save(new Register("aaa", 10.0));
+        registerRepository.persist(new Register("aaa", 10.0));
         assertEquals(10.0, registerRepository.read("aaa").getAmount());
     }
 

@@ -1,25 +1,13 @@
 package com.budgeting.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class RechargeParam {
+    String name;
+    Double amount;
 
-@Entity
-public class Register {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(unique = true)
-    private String name;
-
-    private Double amount;
-
-    public Register() {
+    public RechargeParam() {
     }
 
-    public Register(String name, Double amount) {
+    public RechargeParam(String name, Double amount) {
         this.name = name;
         this.amount = amount;
     }

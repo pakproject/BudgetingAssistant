@@ -13,8 +13,14 @@ public class RegisterRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void save(Register register) {
+    public void persist(Register register) {
         entityManager.persist(register);
+    }
+
+    @Transactional
+    public void merge (Register register) {
+        entityManager.merge(register);
+        entityManager.flush();
     }
 
     @Transactional
@@ -26,13 +32,6 @@ public class RegisterRepository {
         } catch (NoResultException e) {
             return null;
         }
-    }
-
-    @Transactional
-    public void checkAll() {
-        getAll().forEach(r -> {
-            System.out.println(r.getName());
-        });
     }
 
     @Transactional
