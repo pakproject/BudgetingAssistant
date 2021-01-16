@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TransferController {
     RegisterRepository repository;
@@ -19,22 +21,13 @@ public class TransferController {
 
     public TransferController(RegisterRepository repository) {
         this.repository = repository;
-        gson = new GsonBuilder().create();
-        initializeIfEmpty();
-    }
-
-    private void initializeIfEmpty () {
-        if (repository.getAll().size() == 0) {
-            repository.persist(new Register("Wallet", 1000.0));
-            repository.persist(new Register("Savings", 5000.0));
-            repository.persist(new Register("Insurance policy", 0.0));
-            repository.persist(new Register("Food expenses", 0.0));
-        }
+        gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
     @PostMapping("/getAll")
     public ResponseEntity getAll() {
-        repository.getAll().forEach(r -> {
+        List<Register> allRegisers = repository.getAll();
+        allRegisers.forEach(r -> {
             System.out.printf("Name: %s, amount: %f%n", r.getName(), r.getAmount());
         });
         return ResponseEntity.ok().build();

@@ -25,17 +25,12 @@ public class RegisterRepositoryTest {
     RegisterRepository registerRepository;
 
     @Test
-    public void givenValueInserted_valueAvailable() {
-        registerRepository.persist(new Register("aaa", 10.0));
-        assertEquals(10.0, registerRepository.read("aaa").getAmount());
-    }
-
-    @Test
     public void givenInitialization_valuesInserted() {
         List<Register> all = registerRepository.getAll();
         assertEquals(4, all.size());
         assertEquals("Wallet", all.get(0).getName());
         assertEquals(1000.0, all.get(0).getAmount());
     }
+
 
 }
