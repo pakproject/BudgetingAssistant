@@ -11,7 +11,6 @@ public class Register {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
     private String name;
 
     private Double amount;

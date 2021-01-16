@@ -2,7 +2,6 @@ package com.budgeting.demo.controller;
 
 import com.budgeting.demo.model.Register;
 import com.budgeting.demo.repository.RegisterRepository;
-import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
@@ -24,5 +23,4 @@ public class InitializationController {
             repository.persist(new Register("Food expenses", 0.0));
         }
     }
-
 }

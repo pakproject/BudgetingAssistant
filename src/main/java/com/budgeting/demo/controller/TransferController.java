@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TransferController {
@@ -26,11 +27,11 @@ public class TransferController {
 
     @PostMapping("/checkAll")
     public ResponseEntity getAll() {
-        List<Register> allRegisers = repository.getAll();
-        allRegisers.forEach(r -> {
-            System.out.printf("Name: %s, amount: %f%n", r.getName(), r.getAmount());
-        });
-        return ResponseEntity.ok().build();
+        List<Register> allRegisters = repository.getAll();
+        String forDisplay = allRegisters.stream().map(r -> String.format("Name: %s, amount: %.2f", r.getName(), r.getAmount()))
+                .collect(Collectors.joining("\n"));
+        System.out.println(forDisplay);
+        return ResponseEntity.ok().body(forDisplay);
     }
 
     @PostMapping("/recharge")
