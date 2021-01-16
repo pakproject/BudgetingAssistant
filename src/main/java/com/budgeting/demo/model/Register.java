@@ -36,6 +36,20 @@ public class Register {
         return amount;
     }
 
+    public void add(Double value) throws Exception {
+        if (value < 0) {
+            throw new Exception("Value incorrect");
+        }
+        this.amount += value;
+    }
+
+    public void subtract(Double value) throws Exception {
+        if (value < 0 || this.amount < value) {
+            throw new Exception("Value incorrect");
+        }
+        this.amount -= value;
+    }
+
     public void setAmount(Double amount) {
         this.amount = amount;
     }

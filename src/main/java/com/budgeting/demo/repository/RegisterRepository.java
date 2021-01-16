@@ -24,6 +24,13 @@ public class RegisterRepository {
     }
 
     @Transactional
+    public void merge (Register register1, Register register2) {
+        entityManager.merge(register1);
+        entityManager.merge(register2);
+        entityManager.flush();
+    }
+
+    @Transactional
     public Register read(String name) throws NoResultException {
         TypedQuery<Register> query = this.entityManager.createQuery("SELECT r FROM Register r WHERE r.name = ?1", Register.class);
         query.setParameter(1, name);

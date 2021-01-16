@@ -1,8 +1,8 @@
 package com.budgeting.demo.model;
 
 public class RechargeParam {
-    String name;
-    Double amount;
+    private String name;
+    private Double amount;
 
     public RechargeParam() {
     }
