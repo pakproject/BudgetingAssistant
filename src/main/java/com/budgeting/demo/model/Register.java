@@ -19,6 +19,12 @@ public class Register {
     public Register() {
     }
 
+    public Register(Long id, String name, Double amount) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+    }
+
     public Register(String name, Double amount) {
         this.name = name;
         this.amount = amount;
